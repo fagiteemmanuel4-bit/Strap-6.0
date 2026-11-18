@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "strap",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-11-18",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "nodejs_compat_populate_process_env"
+  ],
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": true
+  },
+  "triggers": {
+    "crons": ["0 6 * * *"]
+  },
+  "vars": {
+    "BASE_DOMAIN": "strap.store"
+  }
+}

@@ -1,0 +1,7 @@
+.env
+.env.*
+!.env.example
+db/
+scripts/
+SETUP.md
+node_modules

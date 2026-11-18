@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<strap-template>
+  <config>
+    <v>2</v>
+    <template>fresh</template>
+    <theme>
+      <font>Sora</font>
+      <accent>#e6f53a</accent>
+      <bg>#ffffff</bg>
+      <ink>#0a0a0a</ink>
+      <radius>18</radius>
+    </theme>
+    <sections>
+      <item><type>announcement</type><text>Welcome to our store</text></item>
+      <item><type>hero</type><style>center</style><cta>Shop now</cta></item>
+      <item><type>products</type><title>Featured products</title><layout>grid</layout></item>
+      <item><type>about</type><title>About us</title><text>Tell customers what makes your store special.</text></item>
+      <item><type>footer</type></item>
+    </sections>
+  </config>
+</strap-template>

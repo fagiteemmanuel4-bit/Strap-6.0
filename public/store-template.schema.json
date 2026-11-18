@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://strap.store/schemas/store-template.schema.json",
+  "title": "Strap Storefront Template",
+  "description": "Portable appearance and section layout. Importing this file never replaces store products, orders, domain, or account details.",
+  "type": "object",
+  "required": ["v", "theme", "sections"],
+  "properties": {
+    "v": { "type": ["integer", "string"], "const": 2 },
+    "template": { "type": "string", "maxLength": 40 },
+    "theme": {
+      "type": "object",
+      "required": ["font", "accent", "bg", "ink", "radius"],
+      "properties": {
+        "font": { "type": "string", "enum": ["Sora", "Inter", "DM Serif Display", "Space Mono"] },
+        "accent": { "$ref": "#/$defs/colour" },
+        "bg": { "$ref": "#/$defs/colour" },
+        "ink": { "$ref": "#/$defs/colour" },
+        "radius": { "type": "number", "minimum": 0, "maximum": 32 }
+      },
+      "additionalProperties": true
+    },
+    "sections": {
+      "type": "array",
+      "maxItems": 30,
+      "items": { "$ref": "#/$defs/section" }
+    }
+  },
+  "$defs": {
+    "colour": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+    "section": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "enum": ["announcement", "hero", "billboard", "banner", "products", "about", "contact", "testimonials", "faq", "policies", "footer"] },
+        "title": { "type": "string", "maxLength": 120 },
+        "text": { "type": "string", "maxLength": 3000 },
+        "cta": { "type": "string", "maxLength": 60 },
+        "style": { "enum": ["center", "bold", "split"] },
+        "layout": { "enum": ["grid", "list"] },
+        "image": { "type": "string", "maxLength": 2000 },
+        "question": { "type": "string", "maxLength": 300 },
+        "answer": { "type": "string", "maxLength": 2000 }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

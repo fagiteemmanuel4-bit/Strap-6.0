@@ -1,0 +1,22 @@
+{
+  "name": "strap",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Strap – business dashboard SaaS on Cloudflare Workers with Neon and Flutterwave",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "selftest": "node scripts/selftest.js",
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build && node scripts/copy-static.js",
+    "cf:dev": "npm run build && wrangler dev",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.0",
+    "@neon/neon-js": "^0.10.2"
+  },
+  "devDependencies": {
+    "vite": "^7.0.0",
+    "wrangler": "^4.0.0"
+  }
+}
