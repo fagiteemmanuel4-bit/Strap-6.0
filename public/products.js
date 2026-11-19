@@ -641,8 +641,22 @@ window.StrapProducts = (() => {
     }
 
     // ----- boot -----
+    // The dashboard loads features.js after this module definition and mounts this page
+    // only after all dashboard scripts are ready. Hydrate from the active branch here,
+    // instead of invoking the placeholder API before features.js can wrap it.
     renderAll();
-    api.getProducts().then(r => { items = r; loading = false; renderAll(); }).catch(() => { items = []; loading = false; renderAll(); });
+    (async () => {
+      try {
+        const branchItems = window.StrapFeatures && typeof window.StrapFeatures.items === 'function'
+          ? window.StrapFeatures.items()
+          : await api.getProducts();
+        items = Array.isArray(branchItems) ? branchItems : [];
+      } catch (e) {
+        items = [];
+      }
+      loading = false;
+      renderAll();
+    })();
     return {
       items: () => items, openAdd: () => openPage(), openImport, openAI,
       countIn: name => items.filter(p => (p.collections || []).includes(name)).length,
